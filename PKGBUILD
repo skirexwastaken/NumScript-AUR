@@ -13,10 +13,10 @@ sha256sums=('SKIP')
 
 build() {
     cd "$srcdir"/*-$pkgver
-    python -m pip install --prefix="$pkgdir/usr" .
+    # Optional: build step if needed; otherwise can be empty
 }
 
 package() {
     cd "$srcdir"/*-$pkgver
-    python -m pip install --root="$pkgdir" --prefix=/usr .
+    python -m pip install --root="$pkgdir" --prefix=/usr --no-deps --ignore-installed .
 }
