@@ -21,9 +21,10 @@ package() {
     cd "$srcdir"/*-$pkgver
 
     # Install Python package into $pkgdir. 
-    # Use destdir instead of --root. destdir is the preferred way 
-    # for installation/staging in this build context.
-    # The --prefix=/usr tells pip where to put the files (e.g., in /usr/lib/python3.x/site-packages).
+    # The --destdir and --prefix flags are crucial for correct staging.
+    # This step will automatically create the 'numscript' executable 
+    # in $pkgdir/usr/bin based on the 'console_scripts' entry point 
+    # defined in setup.py (numscript=NumScript:main).
     python -m pip install \
         --prefix=/usr \
         --destdir="$pkgdir" \
@@ -31,20 +32,11 @@ package() {
         --ignore-installed \
         --no-cache-dir \
         .
-
-    # Create the wrapper executable (this part was mostly correct, but moved here for clarity)
-    install -Dm755 -t "$pkgdir/usr/bin" <<'EOF'
-#!/usr/bin/env python3
-from numscript.source.builder import NumScriptVirtualMachine
-
-def main():
-    engine = NumScriptVirtualMachine()
-    try:
-        engine.cli()
-    except KeyboardInterrupt:
-        pass
-
-if __name__ == "__main__":
-    main()
-EOF
+        
+    # --- MANUAL WRAPPER REMOVED ---
+    # The block below is no longer needed:
+    # install -Dm755 -t "$pkgdir/usr/bin" <<'EOF'
+    # #!/usr/bin/env python3
+    # ...
+    # EOF
 }
