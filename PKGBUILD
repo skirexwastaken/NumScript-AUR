@@ -18,5 +18,23 @@ build() {
 
 package() {
     cd "$srcdir"/*-$pkgver
+
+    # Install the Python package
     python -m pip install --root="$pkgdir" --prefix=/usr --no-deps --ignore-installed .
+
+    # Create the wrapper executable
+    install -Dm755 -t "$pkgdir/usr/bin" <<'EOF'
+#!/usr/bin/env python3
+from source.builder import NumScriptVirtualMachine
+
+def main():
+    engine = NumScriptVirtualMachine()
+    try:
+        engine.cli()
+    except KeyboardInterrupt:
+        pass
+
+if __name__ == "__main__":
+    main()
+EOF
 }
