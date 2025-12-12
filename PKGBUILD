@@ -1,4 +1,3 @@
-# Maintainer: Your Name <youremail@example.com>
 pkgname=numscript
 pkgver=1.0.0
 pkgrel=1
@@ -8,19 +7,15 @@ url="https://github.com/skirexwastaken/numscript-aur"
 license=('MIT')
 depends=('python')
 makedepends=('python-setuptools')
-# Define a variable for the extracted source directory name (optional but clean)
-_name=NumScript-AUR
-
-source=("https://github.com/skirexwastaken/numscript-aur/archive/${pkgver}.tar.gz")
-sha256sums=('SKIP')  # Replace with real checksum for production
+source=("$pkgver.tar.gz::https://github.com/skirexwastaken/numscript-aur/archive/$pkgver.tar.gz")
+sha256sums=('SKIP')
 
 build() {
-    cd "$pkgname-$pkgver"
-    python -m build --wheel --no-isolation
+    cd "${pkgname}-${pkgver}"
+    python setup.py build
 }
 
 package() {
-    cd "$pkgname-$pkgver"
-    python -m installer --destdir="$pkgdir" dist/*.whl
+    cd "${pkgname}-${pkgver}"
+    python setup.py install --root="$pkgdir" --optimize=1 --skip-build
 }
-
