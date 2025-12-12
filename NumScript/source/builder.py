@@ -76,6 +76,7 @@ class NumScriptVirtualMachine():
 
         # --- Checking if data folders exist ---
         for folder in ["code", "definitions", "files", "stacks", "variables"]:
-            if not os.path.exists(f"NumScript/data/{folder}"):
+            folder_path = os.path.join(numscript_root, "data", folder)
+            if not os.path.exists(folder_path):
+                os.makedirs(folder_path)
 
-                os.makedirs(f"data/{folder}")
