@@ -1,4 +1,5 @@
 # --- Importing Libraries ---
+from importlib import resources
 import json
 import types
 import os
@@ -34,7 +35,7 @@ class NumScriptVirtualMachine():
         self.loopCallback = False #Helper variable for loops
 
         # --- Importing modules ---
-        with open("NumScript/source/json/modulePaths.json", "r") as modulePathsFile:
+        with resources.open_text("NumScript.source.json","modulePaths.json") as modulePathsFile:
             modulesToImport = json.load(modulePathsFile)
 
             for modulePath, functionName in modulesToImport.items():
@@ -43,7 +44,7 @@ class NumScriptVirtualMachine():
                 setattr(self, functionName, types.MethodType(func, self))
         
         # --- Settings of Interpreter ---
-        with open("NumScript/source/json/settings.json","r") as settings_file:
+        with resources.open_text("NumScript.source.json","settings.json") as settings_file:
             settings = json.load(settings_file)
             
             self.states = settings["states"]
@@ -62,7 +63,7 @@ class NumScriptVirtualMachine():
 
             # --- Init file ---
             if settings["init"] == True: #If init is enabled, the init code is executed
-                with open("NumScript/source/1318.ns", 'r', encoding='utf-8') as file:
+                with resources.open_text("NumScript.source","1318.ns", encoding='utf-8') as file:
                     importedCode = [line.rstrip('\n') for line in file]
 
                     for lineOfCode in importedCode:
