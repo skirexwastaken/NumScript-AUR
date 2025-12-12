@@ -9,13 +9,9 @@ depends=('python')
 makedepends=('python-setuptools')
 source=("$pkgver.tar.gz::https://github.com/skirexwastaken/numscript-aur/archive/$pkgver.tar.gz")
 sha256sums=('SKIP')
-
 build() {
     cd "${pkgname}-${pkgver}"
-
-    # Disable PEP517 and pip-based builds
-    rm -f pyproject.toml
-
+    rm -f pyproject.toml  # disables PEP 517 / pip wheel building
     python setup.py build
 }
 
