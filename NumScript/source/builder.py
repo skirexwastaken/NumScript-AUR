@@ -34,7 +34,7 @@ class NumScriptVirtualMachine():
         self.loopCallback = False #Helper variable for loops
 
         # --- Importing modules ---
-        with open("source/json/modulePaths.json", "r") as modulePathsFile:
+        with open("NumScript.source/json/modulePaths.json", "r") as modulePathsFile:
             modulesToImport = json.load(modulePathsFile)
 
             for modulePath, functionName in modulesToImport.items():
@@ -43,7 +43,7 @@ class NumScriptVirtualMachine():
                 setattr(self, functionName, types.MethodType(func, self))
         
         # --- Settings of Interpreter ---
-        with open("source/json/settings.json","r") as settings_file:
+        with open("NumScript.source/json/settings.json","r") as settings_file:
             settings = json.load(settings_file)
             
             self.states = settings["states"]
@@ -75,6 +75,7 @@ class NumScriptVirtualMachine():
 
         # --- Checking if data folders exist ---
         for folder in ["code", "definitions", "files", "stacks", "variables"]:
-            if not os.path.exists(f"data/{folder}"):
+            if not os.path.exists(f"NumScript.data/{folder}"):
 
                 os.makedirs(f"data/{folder}")
+
