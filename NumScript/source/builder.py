@@ -38,7 +38,7 @@ class NumScriptVirtualMachine():
             modulesToImport = json.load(modulePathsFile)
 
             for modulePath, functionName in modulesToImport.items():
-                module = __import__(f"source.{modulePath}", fromlist=[functionName])
+                module = __import__(f"NumScript.source.{modulePath}", fromlist=[functionName])
                 func = getattr(module, functionName)
                 setattr(self, functionName, types.MethodType(func, self))
         
@@ -78,5 +78,6 @@ class NumScriptVirtualMachine():
             if not os.path.exists(f"NumScript/data/{folder}"):
 
                 os.makedirs(f"data/{folder}")
+
 
 
