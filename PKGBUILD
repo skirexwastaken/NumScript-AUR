@@ -14,7 +14,6 @@ sha256sums=('SKIP')  # Git sources are not hashed
 
 build() {
     cd "$srcdir/numscript-aur"  # git sources clone into this folder
-    rm -f pyproject.toml
     python setup.py build
 }
 
