@@ -8,16 +8,15 @@ license=('MIT')
 depends=('python')
 makedepends=('python-setuptools')
 
-# Git source for the repo
 source=("git+https://github.com/skirexwastaken/numscript-aur.git")
-sha256sums=('SKIP')  # Git sources are not hashed
+sha256sums=('SKIP')
 
 build() {
-    cd "$srcdir/numscript-aur"  # git sources clone into this folder
-    python setup.py build
+    cd "$srcdir/$pkgname"
+    python -m build
 }
 
 package() {
-    cd "$srcdir/numscript-aur"
-    python setup.py install --root="$pkgdir" --optimize=1
+    cd "$srcdir/$pkgname"
+    python -m pip install --root="$pkgdir" --optimize=1 .
 }
