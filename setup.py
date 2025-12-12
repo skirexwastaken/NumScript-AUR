@@ -1,13 +1,13 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name="numscript",
     version="1.0.0",
-    py_modules=["NumScript"],  # single file module
+    packages=find_packages(),  # will include NumScript and all subfolders
     install_requires=[],
     entry_points={
         "console_scripts": [
-            "numscript=NumScript:main",  # points to main() in NumScript.py
+            "numscript=NumScript.NumScript:main",  # main() in NumScript.py
         ],
     },
 )
