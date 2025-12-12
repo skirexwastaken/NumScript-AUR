@@ -7,15 +7,18 @@ url="https://github.com/skirexwastaken/numscript-aur"
 license=('MIT')
 depends=('python')
 makedepends=('python-setuptools')
-source=("$pkgver.tar.gz::https://github.com/skirexwastaken/numscript-aur/archive/$pkgver.tar.gz")
+
+# Build from Git directly
+source=("git+https://github.com/skirexwastaken/numscript-aur.git")
 sha256sums=('SKIP')
+
 build() {
-    cd "${pkgname}-${pkgver}"
-    rm -f pyproject.toml  # disables PEP 517 / pip wheel building
+    cd "$srcdir/numscript-aur"
+    rm -f pyproject.toml
     python setup.py build
 }
 
 package() {
-    cd "${pkgname}-${pkgver}"
+    cd "$srcdir/numscript-aur"
     python setup.py install --root="$pkgdir" --optimize=1 --skip-build
 }
