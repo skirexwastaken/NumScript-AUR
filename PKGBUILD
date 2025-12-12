@@ -7,9 +7,7 @@ arch=('any')
 url="https://github.com/skirexwastaken/numscript-aur"
 license=('MIT')
 depends=('python')
-# CRITICAL: We depend on setuptools to execute the setup.py script
-makedepends=('python-setuptools') 
-
+makedepends=('python-setuptools')
 # Define a variable for the extracted source directory name (optional but clean)
 _name=NumScript-AUR
 
