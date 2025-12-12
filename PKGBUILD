@@ -20,5 +20,4 @@ build() {
 package() {
     cd "$srcdir/numscript-aur-${pkgver}"
     python setup.py install --root="$pkgdir" --optimize=1
-    cp -r source/* "$pkgdir/usr/lib/python3.13/site-packages/source/"
 }
