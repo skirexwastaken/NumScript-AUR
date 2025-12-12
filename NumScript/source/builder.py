@@ -62,7 +62,7 @@ class NumScriptVirtualMachine():
 
             # --- Init file ---
             if settings["init"] == True: #If init is enabled, the init code is executed
-                with open("source/1318.ns", 'r', encoding='utf-8') as file:
+                with open("NumScript.source/1318.ns", 'r', encoding='utf-8') as file:
                     importedCode = [line.rstrip('\n') for line in file]
 
                     for lineOfCode in importedCode:
@@ -76,4 +76,5 @@ class NumScriptVirtualMachine():
         # --- Checking if data folders exist ---
         for folder in ["code", "definitions", "files", "stacks", "variables"]:
             if not os.path.exists(f"data/{folder}"):
+
                 os.makedirs(f"data/{folder}")
