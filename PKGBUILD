@@ -17,14 +17,12 @@ source=("https://github.com/skirexwastaken/numscript-aur/archive/${pkgver}.tar.g
 sha256sums=('SKIP')  # Replace with real checksum for production
 
 build() {
-    cd "$srcdir"/$_name-$pkgver
-    python setup.py build
+    cd "$pkgname-$pkgver"
+    python -m build --wheel --no-isolation
 }
 
 package() {
-    cd "$srcdir"/$_name-$pkgver
-    
-    # Install into the package directory with correct prefix
-    python setup.py install --root="$pkgdir" --prefix=/usr --optimize=1
+    cd "$pkgname-$pkgver"
+    python -m installer --destdir="$pkgdir" dist/*.whl
 }
 
