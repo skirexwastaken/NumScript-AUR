@@ -8,7 +8,6 @@ license=('MIT')
 depends=('python')
 makedepends=('python-setuptools')
 
-# Build from Git directly
 source=("git+https://github.com/skirexwastaken/numscript-aur.git")
 sha256sums=('SKIP')
 
