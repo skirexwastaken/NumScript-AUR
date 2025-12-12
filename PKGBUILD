@@ -1,3 +1,4 @@
+# Maintainer: Your Name <youremail@example.com>
 pkgname=numscript
 pkgver=1.0.0
 pkgrel=1
@@ -9,18 +10,24 @@ depends=('python')
 makedepends=('python-pip')
 
 source=("https://github.com/skirexwastaken/numscript-aur/archive/${pkgver}.tar.gz")
-sha256sums=('SKIP')
+sha256sums=('SKIP')  # Replace with real checksum for production
 
 build() {
     cd "$srcdir"/*-$pkgver
-    # Optional: build step if needed; otherwise can be empty
+    # No build step needed for pure Python
 }
 
 package() {
     cd "$srcdir"/*-$pkgver
 
-    # Install the Python package
-    python -m pip install --root="$pkgdir" --prefix=/usr --no-deps --ignore-installed .
+    # Install Python package into $pkgdir
+    python -m pip install \
+        --root="$pkgdir" \
+        --prefix=/usr \
+        --no-deps \
+        --ignore-installed \
+        --no-cache-dir \
+        .
 
     # Create the wrapper executable
     install -Dm755 -t "$pkgdir/usr/bin" <<'EOF'
