@@ -17,20 +17,14 @@ source=("https://github.com/skirexwastaken/numscript-aur/archive/${pkgver}.tar.g
 sha256sums=('SKIP')  # Replace with real checksum for production
 
 build() {
-    # Enter the extracted source directory
     cd "$srcdir"/$_name-$pkgver
-    
-    # Run the standard setuptools build process
     python setup.py build
 }
 
 package() {
-    # Enter the extracted source directory
     cd "$srcdir"/$_name-$pkgver
     
-    # Install the built package into the staging directory ($pkgdir).
-    # The --root="$pkgdir" flag correctly tells setuptools to install 
-    # the files into the fakeroot environment, and handles creating 
-    # the 'numscript' executable based on your setup.py entry point.
-    python setup.py install --root="$pkgdir" --optimize=1
+    # Install into the package directory with correct prefix
+    python setup.py install --root="$pkgdir" --prefix=/usr --optimize=1
 }
+
