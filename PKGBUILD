@@ -20,19 +20,22 @@ build() {
 package() {
     cd "$srcdir"/*-$pkgver
 
-    # Install Python package into $pkgdir
+    # Install Python package into $pkgdir. 
+    # Use destdir instead of --root. destdir is the preferred way 
+    # for installation/staging in this build context.
+    # The --prefix=/usr tells pip where to put the files (e.g., in /usr/lib/python3.x/site-packages).
     python -m pip install \
-        --root="$pkgdir" \
         --prefix=/usr \
+        --destdir="$pkgdir" \
         --no-deps \
         --ignore-installed \
         --no-cache-dir \
         .
 
-    # Create the wrapper executable
+    # Create the wrapper executable (this part was mostly correct, but moved here for clarity)
     install -Dm755 -t "$pkgdir/usr/bin" <<'EOF'
 #!/usr/bin/env python3
-from source.builder import NumScriptVirtualMachine
+from numscript.source.builder import NumScriptVirtualMachine
 
 def main():
     engine = NumScriptVirtualMachine()
