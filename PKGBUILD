@@ -12,6 +12,10 @@ sha256sums=('SKIP')
 
 build() {
     cd "${pkgname}-${pkgver}"
+
+    # Disable PEP517 and pip-based builds
+    rm -f pyproject.toml
+
     python setup.py build
 }
 
