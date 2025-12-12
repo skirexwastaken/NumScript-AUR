@@ -13,11 +13,11 @@
     },
 
     "paths":{
-      "codePath": "",
-      "definitionsPath": "",
-      "filesPath": "",
-      "stacksPath": "",
-      "variablesPath": ""
+      "codePath": "NumScript/",
+      "definitionsPath": "NumScript/",
+      "filesPath": "NumScript/",
+      "stacksPath": "NumScript/",
+      "variablesPath": "NumScript/"
     },
 
     "init": true
