@@ -12,12 +12,11 @@ source=("git+https://github.com/skirexwastaken/numscript-aur.git")
 sha256sums=('SKIP')
 
 build() {
-    cd "$srcdir/numscript-aur"  # change to the actual repo folder
-    python -m pip install --upgrade build  # ensure build module is available
-    python -m build
+    cd "$srcdir/numscript-aur"
+    python setup.py build
 }
 
 package() {
     cd "$srcdir/numscript-aur"
-    python -m pip install --root="$pkgdir" --optimize=1 .
+    python setup.py install --root="$pkgdir" --optimize=1
 }
