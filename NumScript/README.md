@@ -24,6 +24,7 @@ NumScript doesn't use any non standard Python libraries so you will need to simp
 | Works | Python Version |
 |-------|----------------|
 | ✅ | 3.14.0 |
+| ✅ | 3.13.9 |
 | ✅ | 3.13.7 |
 
 ## How to use
@@ -47,6 +48,10 @@ Running NumScript file:
 ### Linux
 
 `python3 NumScript.py main.ns`
+
+### AUR Package
+
+`yay -s numscript`
 
 ## Core Mechanics
 
@@ -277,6 +282,8 @@ This folder is used for saving or loading variables using a .json files.
 
 ## Code Examples
 
+Note: $ stands before user input in Console output parts.
+
 ### Example of using the print function.
 
 NumScript code
@@ -295,7 +302,7 @@ Console output
 10
 ```
 
-### Example of defining variables and then printing their values.
+### Example of defining variables and then printing their values
 
 NumScript code
 
@@ -314,7 +321,7 @@ Console output
 20
 ```
 
-### Example of defining a variable and for cycle.
+### Example of defining a variable and for cycle
 
 NumScript code
 
@@ -338,4 +345,72 @@ Console output
 03
 02
 01
+```
+
+### Example of while cycle
+
+NumScript code
+
+```
+13 01 00 24 01 01
+53 02 00 35 01 11
+50 10 02 00
+50 13 01 00 24 02 00 30 01 01
+50 51
+```
+
+Console output
+
+```
+01
+02
+03
+04
+05
+06
+07
+08
+09
+10
+```
+
+### Guess a number between 00 - 99
+
+NumScript code
+
+```
+13 01 00 24 01 01
+95 01 01 24 01 00 24 01 99
+11 01 32 01 20 01 04 01 18 01 18 01 99 01 19 01 07 01 04 01 99 01 13 01 20 01 12 01 01 01 04 01 17
+53 02 00
+50 13 01 02 24 12
+50 52 02 02 36 02 01
+50 50 11 01 50 01 14 01 20 01 99 01 22 01 14 01 13
+50 50 13 01 00 24 01 00
+50 50 51 
+50 52 02 02 35 02 01
+50 50 11 01 33 01 08 01 06 01 07 01 04 01 17
+50 50 51
+50 52 02 02 34 02 01
+50 50 11 01 37 01 14 01 22 01 04 01 17
+50 50 51
+50 51
+```
+
+Example of Console output
+
+```
+Guess the number
+$ 50
+Higher
+$ 75
+Lower
+$ 62
+Higher
+$ 67
+Lower
+$ 65
+Lower
+$ 63
+You won
 ```
